@@ -78,20 +78,21 @@ async function run() {
         })
         //UPDATE API
 
-        // app.put('/orders/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     console.log('updating user', req);
-        //     const filter = { _id: ObjectId(id) };
-        //     const options = { upsert: true };
-        //     const updateDoc = {
-        //         $set: {
-        //             status: updatedStatus.status
-        //         },
-        //     };
-        //     const result = await ordersCollection.updateOne(filter, updateDoc, options)
+        app.put('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedStatus = req.body;
+            console.log('updating user', req);
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: updatedStatus.status
+                },
+            };
+            const result = await ordersCollection.updateOne(filter, updateDoc, options)
 
-        //     res.json(result)
-        // })
+            res.json(result)
+        })
 
         // Delete API
 
